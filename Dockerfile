@@ -3,11 +3,11 @@ FROM node:18-alpine
 # 设置工作目录
 WORKDIR /app
 
-# 复制 package 文件
-COPY package*.json ./
+# 只复制 package.json，避免 lock 文件兼容性问题
+COPY package.json ./
 
-# 只安装生产依赖
-RUN npm install --omit=dev
+# 安装所有依赖（不仅是生产依赖，确保万无一失）
+RUN npm install
 
 # 复制编译后的代码
 COPY dist ./dist
