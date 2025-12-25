@@ -3,20 +3,11 @@ FROM node:18-alpine
 # 设置工作目录
 WORKDIR /app
 
-# 复制 package 文件
-COPY package*.json ./
-
-# 安装所有依赖（包括 devDependencies 用于构建）
-RUN npm install
-
-# 复制源代码
+# 复制所有文件（包括已编译的 dist 目录）
 COPY . .
 
-# 构建 TypeScript
-RUN npm run build
-
-# 删除开发依赖，只保留生产依赖
-RUN npm prune --production
+# 只安装生产依赖
+RUN npm install --omit=dev
 
 # 暴露端口
 EXPOSE 80
