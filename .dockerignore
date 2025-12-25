@@ -1,0 +1,14 @@
+node_modules
+.git
+.env
+.DS_Store
+dist/test
+src
+*.ts
+tsconfig.json
+.editorconfig
+.gitignore
+*.md
+deploy.sh
+setup-wizard.sh
+test-local.sh
