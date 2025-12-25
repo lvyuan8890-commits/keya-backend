@@ -15,11 +15,11 @@ const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 // 数据库连接池配置
 const pool = promise_1.default.createPool({
-    host: process.env.DB_HOST,
-    port: parseInt(process.env.DB_PORT || '3306'),
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
+    host: process.env.MYSQL_ADDRESS || process.env.DB_HOST,
+    port: parseInt(process.env.MYSQL_PORT || process.env.DB_PORT || '3306'),
+    user: process.env.MYSQL_USERNAME || process.env.DB_USER,
+    password: process.env.MYSQL_PASSWORD || process.env.DB_PASSWORD,
+    database: process.env.MYSQL_DATABASE || process.env.DB_NAME || 'keya',
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0,
